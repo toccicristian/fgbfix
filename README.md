@@ -1,5 +1,5 @@
 
-#FGBFIX
+# FGBFIX
 
 Es la solucion para reparar las boletas mal generadas que se bajan de Federacion Gráfica Bonaerense.
 Implementa vecfixer para reparar la boleta en si y fgb_campovence para recrear el campo con widgets de fecha.
