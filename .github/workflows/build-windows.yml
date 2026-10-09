@@ -1,0 +1,32 @@
+name: Crear ejecutable Windows
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-python-3.13.5.txt
+          pip install pyinstaller
+
+      - name: Crear EXE
+        run: pyinstaller --clean --onefile src/fgbfix.py
+
+      - name: Publicar ejecutable
+        uses: actions/upload-artifact@v4
+        with:
+          name: ejecutable-windows
+          path: dist/tu_script.exe
